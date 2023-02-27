@@ -1,6 +1,6 @@
 ---
 - name: Nodes configuration 
-  hosts: k8s-n-3
+  hosts: all
   become: true
   remote_user: astorf
   roles:
@@ -12,12 +12,13 @@
     - node-config
 
 - name: install kubernetes
-  hosts: k8s-m-1
+  hosts: all
   become: true
   remote_user: astorf
   roles:
-    - install-docker
-    # - install-kubernetes
+    - install-containerd
+    #- install-docker
+    - install-kubernetes
   tags:
     - install-kube
 
