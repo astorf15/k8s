@@ -1,0 +1,21 @@
+
+
+# Debian repository
+k8s_apt_repository: "deb http://apt.kubernetes.io/ kubernetes-xenial main"
+k8s_apt_ignore_key_errors: false
+
+
+k8s_pod_network:
+  # Calico CNI.
+  cni: 'calico'
+  cidr: '192.168.0.0/16'
+  
+  # Flannel CNI.
+  # cni: 'flannel'
+  # cidr: '10.244.0.0/16'
+  
+# Calico config file.
+k8s_calico_manifest_file: https://projectcalico.docs.tigera.io/manifests/calico.yaml
+
+# Flannel config file.
+k8s_flannel_manifest_file: https://raw.githubusercontent.com/flannel-io/flannel/master/Documentation/kube-flannel.yml

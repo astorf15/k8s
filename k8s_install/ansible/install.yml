@@ -1,0 +1,26 @@
+---
+- name: Nodes configuration 
+  hosts: k8s-n-3
+  become: true
+  remote_user: astorf
+  roles:
+    - set-hosts
+    - set-hostname
+    - set-time-zone
+    - install-tools
+  tags:
+    - node-config
+
+- name: install kubernetes
+  hosts: k8s-m-1
+  become: true
+  remote_user: astorf
+  roles:
+    - install-docker
+    # - install-kubernetes
+  tags:
+    - install-kube
+
+
+    
+...   

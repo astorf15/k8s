@@ -1,0 +1,10 @@
+---
+- name: Add overlay module
+  modprobe:
+    name: overlay
+    state: present
+    
+- name: Add br_netfilter module
+  modprobe:
+    name: br_netfilter
+    state: present      

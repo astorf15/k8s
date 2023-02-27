@@ -1,0 +1,23 @@
+---
+- name: Add Kubernetes apt key.
+  apt_key:
+    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+    state: present
+  register: add_repository_key
+  ignore_errors: "{{ k8s_apt_ignore_key_errors }}"
+
+- name: Add Kubernetes repository.
+  apt_repository:
+    repo: "{{ k8s_apt_repository }}"
+    state: present
+    update_cache: true
+
+- name: Install Kubernetes packages
+  apt:
+    pkg:
+      - kubeadm
+      - kubectl
+      - kubelet
+    state: present
+  notify: restart kubelet
+...
